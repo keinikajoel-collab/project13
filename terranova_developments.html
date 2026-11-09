@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraNova Developments | Premium Land Sales & Real Estate</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-300 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <div>
+            <h4 class="font-bold text-sm" id="toast-title">Success</h4>
+            <p class="text-xs text-emerald-100" id="toast-desc">Action completed successfully.</p>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-600/30 group-hover:bg-emerald-700 transition">
+                        <i class="fa-solid fa-mountain-sun text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-slate-900 block leading-none">TerraNova</span>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600">Developments</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                    <a href="#properties" class="hover:text-emerald-600 transition">Properties</a>
+                    <a href="#services" class="hover:text-emerald-600 transition">Services</a>
+                    <a href="#about" class="hover:text-emerald-600 transition">Why Us</a>
+                    <a href="#contact" class="hover:text-emerald-600 transition">Contact</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openModal('scheduleModal')" class="px-5 py-2.5 rounded-xl border border-emerald-600 text-emerald-600 font-semibold text-sm hover:bg-emerald-50 transition">
+                        Site Visit
+                    </button>
+                    <a href="#contact" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-sm shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition">
+                        Inquire Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-slate-100">
+                    <i class="fa-solid fa-bars text-2xl" id="mobile-menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-4 space-y-3">
+            <a href="#properties" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-2">Properties</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-2">Services</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-2">Why Us</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-2">Contact</a>
+            <div class="pt-2 flex flex-col space-y-2">
+                <button onclick="openModal('scheduleModal')" class="w-full py-2.5 rounded-xl border border-emerald-600 text-emerald-600 font-semibold text-sm">Site Visit</button>
+                <a href="#contact" class="w-full py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-sm text-center">Inquire Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-slate-900 text-white overflow-hidden py-24 lg:py-32">
+        <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl">
+                <span class="inline-flex items-center space-x-2 bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-6 border border-emerald-500/30">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>Verified Freehold Land & Titles</span>
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                    Own Your Future <br>Ground by Ground.
+                </h1>
+                <p class="text-lg text-slate-300 mb-10">
+                    Discover prime gated plots, commercial parcels, and suburban development estates fully surveyed with guaranteed ready land titles and infrastructure.
+                </p>
+            </div>
+
+            <!-- Search & Filter Bar Card -->
+            <div class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-2xl shadow-2xl text-slate-800 max-w-5xl mt-6">
+                <form id="searchForm" onsubmit="filterProperties(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Location / Region</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-location-dot absolute left-3 top-3.5 text-slate-400"></i>
+                            <select id="filterLocation" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <option value="">All Locations</option>
+                                <option value="Green Valley">Green Valley Estate</option>
+                                <option value="Lakeview Ridge">Lakeview Ridge</option>
+                                <option value="Metro Heights">Metro Heights Commercial</option>
+                                <option value="Pinecrest Suburbs">Pinecrest Suburbs</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Property Status</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-tag absolute left-3 top-3.5 text-slate-400"></i>
+                            <select id="filterStatus" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <option value="">All Statuses</option>
+                                <option value="Available">Available</option>
+                                <option value="Under Development">Under Development</option>
+                                <option value="Selling Fast">Selling Fast</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Max Price ($)</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-dollar-sign absolute left-3 top-3.5 text-slate-400"></i>
+                            <input type="number" id="filterPrice" placeholder="e.g. 50000" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/30 transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Search Plots</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="bg-white border-b border-slate-100 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <h3 class="text-3xl font-extrabold text-slate-900 mb-1">1,250+</h3>
+                    <p class="text-sm text-slate-500 font-medium">Plots Sold Successfully</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-slate-900 mb-1">15+</h3>
+                    <p class="text-sm text-slate-500 font-medium">Completed Estates</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-slate-900 mb-1">100%</h3>
+                    <p class="text-sm text-slate-500 font-medium">Ready Freehold Titles</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-slate-900 mb-1">98%</h3>
+                    <p class="text-sm text-slate-500 font-medium">Satisfied Investors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties / Land Listings Grid -->
+    <section id="properties" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-emerald-600 font-bold uppercase tracking-wider text-xs block mb-2">Featured Portfolio</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Available Land & Development Plots</h2>
+                </div>
+                <div class="mt-4 md:mt-0 flex space-x-2">
+                    <button onclick="filterCategory('All')" class="category-btn active px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white transition">All Plots</button>
+                    <button onclick="filterCategory('Residential')" class="category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Residential</button>
+                    <button onclick="filterCategory('Commercial')" class="category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Commercial</button>
+                </div>
+            </div>
+
+            <!-- Property Cards Grid -->
+            <div id="property-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamically populated via JS for smooth filtering -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Development Services Section -->
+    <section id="services" class="py-20 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-600 font-bold uppercase tracking-wider text-xs block mb-2">Comprehensive Solutions</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-4">Our Land & Development Services</h2>
+                <p class="text-slate-600">We don't just sell land; we transform raw acreage into thriving, fully-serviced communities with modern infrastructural standards.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Professional Surveying & Mapping</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Precise boundary demarcation using advanced GPS and topographical mapping technologies to ensure accurate acreage calculations.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Beacon installation</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Contour & Topo reports</span></li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Infrastructure Development</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Building sustainable access roads, perimeter security fencing, drainage systems, and water/electricity connectivity grids on all estates.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Graded murram access roads</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Solar street lighting</span></li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Title Processing & Legal</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Fast-tracked land title processing, ownership verification, mutation services, and secure title transfers directly to your name.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Freehold & Leasehold deeds</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Zero encumbrance guarantee</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="about" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-emerald-600 font-bold uppercase tracking-wider text-xs block mb-2">Why TerraNova</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6">Building Communities with Integrity and Trust</h2>
+                    <p class="text-slate-600 mb-8 leading-relaxed">
+                        Purchasing land is one of the most critical lifetime investments. At TerraNova Developments, we eliminate land litigation risks by providing verified freehold properties equipped with modern community infrastructure.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 font-bold">1</div>
+                        <div>
+                                <h4 class="font-bold text-slate-900 mb-1">100% Genuine Title Guarantee</h4>
+                                <p class="text-sm text-slate-500">Every single plot undergoes rigorous legal vetting at the Lands Registry before listing.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">Flexible Payment Plans</h4>
+                                <p class="text-sm text-slate-500">Spread payments comfortably across up to 12 months with zero hidden interest fees.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">Prime Strategic Locations</h4>
+                                <p class="text-sm text-slate-500">Rapidly developing suburban corridors with high capital appreciation potential.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Estate Development" class="rounded-3xl shadow-2xl w-full object-cover h-[500px]">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 max-w-xs hidden sm:block">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <div class="w-10 h-10 bg-emerald-600 text-white rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm text-slate-900">Award Winning</h5>
+                                <p class="text-xs text-slate-500">Top Real Estate Developer 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Inquiry & Booking Section -->
+    <section id="contact" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-2 text-white">
+                <!-- Info Column -->
+                <div class="p-10 lg:p-16 flex flex-col justify-between">
+                    <div>
+                        <span class="text-emerald-400 font-bold uppercase tracking-wider text-xs block mb-2">Get in Touch</span>
+                        <h2 class="text-3xl font-extrabold tracking-tight mb-4">Start Your Land Ownership Journey Today</h2>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                            Have questions about a specific estate or ready to schedule a free guided site visit? Fill out the form and our property consultants will get back to you instantly.
+                        </p>
+
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center space-x-3 text-slate-300">
+                                <div class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <span>+1 (800) 555-TERRA / +1 (800) 555-8377</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-slate-300">
+                                <div class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <span>inquiries@terranovadevelopments.com</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-slate-300">
+                                <div class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <span>750 Grand Avenue, Suite 1200, Metropolis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 border-t border-slate-800 flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="p-10 lg:p-16 bg-slate-800/50">
+                    <form id="inquiryForm" onsubmit="handleInquiry(event)" class="space-y-4">
+                        <h3 class="text-xl font-bold mb-6">Send an Inquiry / Booking Request</h3>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Full Name</label>
+                            <input type="text" id="inquiryName" required placeholder="John Doe" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Email Address</label>
+                                <input type="email" id="inquiryEmail" required placeholder="john@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Phone Number</label>
+                                <input type="tel" id="inquiryPhone" required placeholder="+1 (555) 000-0000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Select Interested Estate / Plot</label>
+                            <select id="inquiryEstate" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500">
+                                <option value="General Inquiry">General Estate Inquiry</option>
+                                <option value="Green Valley Estate">Green Valley Estate (Residential)</option>
+                                <option value="Lakeview Ridge">Lakeview Ridge (Prime Residential)</option>
+                                <option value="Metro Heights Commercial">Metro Heights Commercial</option>
+                                <option value="Pinecrest Suburbs">Pinecrest Suburbs</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Message or Special Request</label>
+                            <textarea id="inquiryMessage" rows="3" placeholder="I would like to know more about payment plans..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/30 transition flex items-center justify-center space-x-2">
+                            <span>Submit Request</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Site Visit Modal -->
+    <div id="scheduleModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm hidden px-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-8 relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal('scheduleModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-6">
+                <span class="text-emerald-600 font-bold uppercase tracking-wider text-xs block mb-1">Free Guided Tour</span>
+                <h3 class="text-2xl font-bold text-slate-900">Schedule a Site Visit</h3>
+                <p class="text-xs text-slate-500 mt-1">Book a free transport shuttle and physical inspection of any estate.</p>
+            </div>
+            <form onsubmit="handleSiteVisit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Your Full Name</label>
+                    <input type="text" required placeholder="Alex Morgan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Phone Number</label>
+                    <input type="tel" required placeholder="+1 (555) 123-4567" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Select Estate to Visit</label>
+                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500">
+                        <option>Green Valley Estate</option>
+                        <option>Lakeview Ridge</option>
+                        <option>Metro Heights Commercial</option>
+                        <option>Pinecrest Suburbs</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Preferred Date</label>
+                    <input type="date" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500">
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/20 transition">
+                    Confirm Visit Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white">
+                            <i class="fa-solid fa-mountain-sun text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-lg font-extrabold tracking-tight text-white block leading-none">TerraNova</span>
+                            <span class="text-[10px] font-semibold uppercase tracking-widest text-emerald-500">Developments</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-6 max-w-sm">
+                        Leading provider of verified prime land parcels, professional surveying, and modern community development services.
+                    </p>
+                    <p class="text-xs text-slate-600">© 2026 TerraNova Developments Inc. All rights reserved.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Estates</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#properties" class="hover:text-emerald-400 transition">Green Valley</a></li>
+                        <li><a href="#properties" class="hover:text-emerald-400 transition">Lakeview Ridge</a></li>
+                        <li><a href="#properties" class="hover:text-emerald-400 transition">Metro Heights</a></li>
+                        <li><a href="#properties" class="hover:text-emerald-400 transition">Pinecrest Suburbs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#services" class="hover:text-emerald-400 transition">Land Surveying</a></li>
+                        <li><a href="#services" class="hover:text-emerald-400 transition">Infrastructure</a></li>
+                        <li><a href="#services" class="hover:text-emerald-400 transition">Title Processing</a></li>
+                        <li><a href="#services" class="hover:text-emerald-400 transition">Valuation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-emerald-400 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Legal & Privacy</a></li>
+                        <li><a href="#contact" class="hover:text-emerald-400 transition">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Sample Property Database
+        const properties = [
+            {
+                id: 1,
+                title: "Green Valley Phase 1",
+                category: "Residential",
+                location: "Green Valley",
+                size: "50 x 100 ft",
+                price: 18500,
+                status: "Available",
+                image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80",
+                features: ["Ready Title", "Water & Electricity", "Perimeter Wall"]
+            },
+            {
+                id: 2,
+                title: "Lakeview Ridge Plot 12",
+                category: "Residential",
+                location: "Lakeview Ridge",
+                size: "100 x 100 ft",
+                price: 45000,
+                status: "Selling Fast",
+                image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80",
+                features: ["Waterfront View", "Gated Access", "Ready Title"]
+            },
+            {
+                id: 3,
+                title: "Metro Heights Commercial Hub",
+                category: "Commercial",
+                location: "Metro Heights",
+                size: "120 x 150 ft",
+                price: 95000,
+                status: "Under Development",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
+                features: ["High Traffic Area", "Dual Access Road", "Commercial Deed"]
+            },
+            {
+                id: 4,
+                title: "Pinecrest Suburbs Block C",
+                category: "Residential",
+                location: "Pinecrest Suburbs",
+                size: "50 x 100 ft",
+                price: 22000,
+                status: "Available",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+                features: ["Serene Environment", "Ready Title", "Electricity On Site"]
+            },
+            {
+                id: 5,
+                title: "Green Valley Phase 2",
+                category: "Residential",
+                location: "Green Valley",
+                size: "50 x 100 ft",
+                price: 19500,
+                status: "Under Development",
+                image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80",
+                features: ["Graded Roads", "Ready Title", "Solar Lighting"]
+            },
+            {
+                id: 6,
+                title: "Metro Heights Plaza Plot",
+                category: "Commercial",
+                location: "Metro Heights",
+                size: "100 x 100 ft",
+                price: 78000,
+                status: "Available",
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80",
+                features: ["Corner Plot", "Commercial Title", "Sewer Line Connected"]
+            }
+        ];
+
+        let currentCategory = 'All';
+
+        // Render Property Grid
+        function renderProperties(data) {
+            const grid = document.getElementById('property-grid');
+            if (data.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center bg-white rounded-2xl border border-slate-100">
+                        <i class="fa-solid fa-triangle-exclamation text-4xl text-amber-500 mb-3"></i>
+                        <h3 class="text-lg font-bold text-slate-800">No properties match your filter</h3>
+                        <p class="text-sm text-slate-500 mt-1">Try adjusting your search criteria or reset filters.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = data.map(property => {
+                let statusBadgeColor = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20';
+                if (property.status === 'Under Development') statusBadgeColor = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
+                if (property.status === 'Selling Fast') statusBadgeColor = 'bg-rose-500/10 text-rose-600 border-rose-500/20';
+
+                return `
+                    <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="${property.image}" alt="${property.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=TerraNova+Plot'">
+                                <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold border ${statusBadgeColor} bg-white/90 backdrop-blur-md">
+                                    ${property.status}
+                                </span>
+                                <span class="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold">
+                                    ${property.category}
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-xs font-semibold text-emerald-600 mb-1 space-x-1">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>${property.location}</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-3">${property.title}</h3>
+                                
+                                <div class="grid grid-cols-2 gap-4 py-3 border-y border-slate-100 mb-4 text-xs font-medium text-slate-600">
+                                    <div><i class="fa-solid fa-ruler-combined text-emerald-600 mr-1.5"></i> Size: <strong>${property.size}</strong></div>
+                                    <div><i class="fa-solid fa-file-contract text-emerald-600 mr-1.5"></i> Title: <strong>Freehold</strong></div>
+                                </div>
+
+                                <div class="flex flex-wrap gap-1.5 mb-6">
+                                    ${property.features.map(f => `<span class="bg-slate-100 text-slate-600 text-[11px] font-medium px-2.5 py-1 rounded-lg">${f}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Total Price</span>
+                                <span class="text-2xl font-extrabold text-slate-900">$${property.price.toLocaleString()}</span>
+                            </div>
+                            <button onclick="openPropertyInquiry('${property.title}')" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 transition">
+                                Inquire
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Category Filter Tabs
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if(btn.textContent.trim() === category || (category === 'All' && btn.textContent.trim() === 'All Plots')) {
+                    btn.className = 'category-btn active px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white transition';
+                } else {
+                    btn.className = 'category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition';
+                }
+            });
+
+            applyFilters();
+        }
+
+        // Search and Filter Logic
+        function filterProperties(e) {
+            e.preventDefault();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const loc = document.getElementById('filterLocation').value;
+            const status = document.getElementById('filterStatus').value;
+            const price = document.getElementById('filterPrice').value;
+
+            let filtered = properties.filter(p => {
+                let matchCat = (currentCategory === 'All' || p.category === currentCategory);
+                let matchLoc = (!loc || p.location === loc);
+                let matchStatus = (!status || p.status === status);
+                let matchPrice = (!price || p.price <= parseInt(price));
+                return matchCat && matchLoc && matchStatus && matchPrice;
+            });
+
+            renderProperties(filtered);
+            showToast("Filter Applied", `Showing ${filtered.length} matching properties.`);
+        }
+
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function openPropertyInquiry(title) {
+            document.getElementById('inquiryEstate').value = title;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            showToast("Property Selected", `Ready to inquire about ${title}.`);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-2xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-2xl";
+            }
+        }
+
+        // Form Handlers & Toast Notification
+        function showToast(title, desc) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-desc').textContent = desc;
+            toast.classList.remove('translate-x-full');
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 3500);
+        }
+
+        function handleInquiry(e) {
+            e.preventDefault();
+            showToast("Inquiry Received!", "Our sales team will contact you within 2 hours.");
+            document.getElementById('inquiryForm').reset();
+        }
+
+        function handleSiteVisit(e) {
+            e.preventDefault();
+            closeModal('scheduleModal');
+            showToast("Site Visit Booked!", "A confirmation SMS and shuttle schedule has been sent.");
+        }
+
+        // Initial Render
+        window.onload = function() {
+            renderProperties(properties);
+        };
+    </script>
+</body>
+</html>
